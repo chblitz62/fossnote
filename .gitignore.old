@@ -1,0 +1,5 @@
+/node_modules
+/session.db
+eleves.db
+database.db
+/src/config/discord.json
