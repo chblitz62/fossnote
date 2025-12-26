@@ -1,0 +1,121 @@
+<!-- 
+    Banner de consentement aux cookies - RGPD
+    À inclure dans toutes les pages (dans le footer par exemple)
+    Fichier: src/views/partials/cookie-banner.html
+-->
+
+<!-- Banner de cookies -->
+<div id="cookie-banner" class="cookie-banner" style="display:none;" role="dialog" aria-labelledby="cookie-banner-title" aria-describedby="cookie-banner-desc">
+    <div class="cookie-content">
+        <h3 id="cookie-banner-title" style="margin: 0 0 10px 0; font-size: 18px;">🍪 Nous respectons votre vie privée</h3>
+        <p id="cookie-banner-desc">
+            Nous utilisons des cookies pour améliorer votre expérience sur Fossnote. 
+            Certains cookies sont essentiels au fonctionnement du site (authentification, session), 
+            tandis que d'autres nous aident à comprendre comment vous utilisez notre service.
+        </p>
+        <div class="cookie-buttons">
+            <button id="cookie-accept-all" aria-label="Accepter tous les cookies">
+                ✓ Tout accepter
+            </button>
+            <button id="cookie-reject-optional" aria-label="Refuser les cookies optionnels">
+                ✗ Refuser les cookies optionnels
+            </button>
+            <button id="cookie-customize" aria-label="Personnaliser mes préférences">
+                ⚙ Personnaliser
+            </button>
+        </div>
+        <a href="/politique-confidentialite" style="display: inline-block; margin-top: 5px;">
+            En savoir plus sur notre politique de confidentialité
+        </a>
+    </div>
+</div>
+
+<!-- Modal de personnalisation des cookies -->
+<div id="cookie-modal" class="cookie-modal" role="dialog" aria-labelledby="cookie-modal-title" aria-modal="true" style="display:none;">
+    <div class="cookie-modal-content">
+        <span id="cookie-modal-close" class="cookie-modal-close" aria-label="Fermer">&times;</span>
+        <h2 id="cookie-modal-title">Gérer mes préférences de cookies</h2>
+        
+        <p style="margin-bottom: 20px; color: #666; font-size: 14px;">
+            Nous respectons votre vie privée. Choisissez quels cookies vous souhaitez autoriser. 
+            Vous pouvez modifier vos préférences à tout moment.
+        </p>
+        
+        <!-- Cookies essentiels (obligatoires) -->
+        <div class="cookie-category">
+            <label>
+                <input type="checkbox" id="cookie-essential" checked disabled aria-describedby="desc-essential">
+                <strong>
+                    🔒 Cookies essentiels (obligatoires)
+                </strong>
+            </label>
+            <p id="desc-essential">
+                Ces cookies sont nécessaires au bon fonctionnement du site. 
+                Ils permettent l'authentification, la gestion de session et les fonctionnalités de base. 
+                Ils ne peuvent pas être désactivés.
+            </p>
+        </div>
+        
+        <!-- Cookies analytiques -->
+        <div class="cookie-category">
+            <label>
+                <input type="checkbox" id="cookie-analytics" aria-describedby="desc-analytics">
+                <strong>
+                    📊 Cookies analytiques (optionnels)
+                </strong>
+            </label>
+            <p id="desc-analytics">
+                Ces cookies nous aident à comprendre comment les visiteurs utilisent notre site 
+                en collectant des informations anonymes. Cela nous permet d'améliorer l'expérience utilisateur.
+                Nous utilisons des outils respectueux de la vie privée.
+            </p>
+        </div>
+        
+        <!-- Cookies fonctionnels -->
+        <div class="cookie-category">
+            <label>
+                <input type="checkbox" id="cookie-functional" aria-describedby="desc-functional">
+                <strong>
+                    ⚙️ Cookies fonctionnels (optionnels)
+                </strong>
+            </label>
+            <p id="desc-functional">
+                Ces cookies permettent de mémoriser vos préférences (langue, thème, affichage) 
+                pour vous offrir une expérience personnalisée lors de vos prochaines visites.
+            </p>
+        </div>
+        
+        <!-- Cookies marketing (pour le futur) -->
+        <!--
+        <div class="cookie-category">
+            <label>
+                <input type="checkbox" id="cookie-marketing" aria-describedby="desc-marketing">
+                <strong>
+                    📢 Cookies marketing (optionnels)
+                </strong>
+            </label>
+            <p id="desc-marketing">
+                Ces cookies sont utilisés pour vous présenter des publicités pertinentes. 
+                Ils permettent également de limiter le nombre de fois où vous voyez une publicité 
+                et de mesurer l'efficacité des campagnes.
+            </p>
+        </div>
+        -->
+        
+        <button id="cookie-save-preferences">
+            Enregistrer mes préférences
+        </button>
+        
+        <p style="margin-top: 15px; font-size: 12px; color: #999; text-align: center;">
+            Pour plus d'informations, consultez notre 
+            <a href="/politique-confidentialite" style="color: #667eea;">politique de confidentialité</a>
+        </p>
+    </div>
+</div>
+
+<!-- Lien pour rouvrir les préférences (à placer dans le footer) -->
+<!--
+<a href="#" id="cookie-settings-link" class="cookie-settings-link">
+    ⚙️ Gérer mes cookies
+</a>
+-->
