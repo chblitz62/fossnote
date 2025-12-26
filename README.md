@@ -1,75 +1,182 @@
-# Fossnote
+# 🎓 AFERTES - Portail de Formation
 
-Fossnote est un "serveur PRONOTE" auto-hébergé open source et gratuit compatible avec le client web Pronote. (Free Open Source Selfhostable PRONOTE).
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![PWA Ready](https://img.shields.io/badge/PWA-Ready-brightgreen.svg)](https://web.dev/progressive-web-apps/)
 
-## Installation
+Portail web pour le centre de formation **AFERTES** (Association pour la Formation, l'Expérimentation et la Recherche en Travail Éducatif et Social).
 
-    $ git clone https://github.com/CaraPloof/fossnote
-    $ cd fossnote
-    $ npm install
-    $ npm start
+🌐 Site officiel : [afertes.org](https://afertes.org)
 
-Ensuite allez sur `localhost:3000/fossnote/`.
+![AFERTES Logo](https://afertes.org/wp-content/uploads/2024/12/cropped-Afertes-logo-175x56.png)
 
-## Fonctionnalités actuelles (front-end):
+---
 
-- Page index implémentée : `/fossnote/` (entièrement implémentée)
+## ✨ Fonctionnalités
 
-- Pages espaces (seulement affichage des panels de connexion):
-    - vie scolaire : `/fossnote/viescolaire.html`
-    - parents : `/fossnote/parent.html`
-    - accompagnants : `/fossnote/accompagnant.html`
-    - direction : `/fossnote/direction.html`
-    
-- Pages espaces :
-    - professeurs : `/fossnote/professeur.html` (page d'acceuil)
-    - élèves : `/fossnote/eleve.html` (page d'acceuil, données personnelles, notes et devoirs)
+### 👥 Gestion des utilisateurs
+- **Inscription** avec validation email
+- **Connexion sécurisée** (mot de passe hashé)
+- **Récupération de mot de passe**
+- **Profils personnalisables** avec photo
 
-## Fonctionnalités actuelles (back-end):
-- La création de session (entièrement implémentée) :
-    - Génération d'un identifiant de session en fonction du temps
-    - Ajout des informations de session dans une base de données : `database.db` (table: "sessions") (sqlite3) 
-    - `appelfonction("FonctionParametres")` (voir protocoles)
+### 🎓 Espace Étudiants
+- Fiche personnelle complète
+- Consultation des notes
+- Emploi du temps
+- Messagerie avec les formateurs
 
-- Connexion (pour espace élèves et professeurs seulement) :
-    - Génération "alea" et "challenge" (voir protocoles)
-    - Stockage de la solution du challenge pour l'Authentification
-    - `appelFonction("Identification")` (voir protocoles)
-    - `appelFonction("Authentification")` (voir protocoles)
-    - `appelFonction("ParametresUtilisateur")` (voir protocoles)
-    
-- Navigation : `appelFonction("Navigation")` (voir protocoles)
+### 👨‍🏫 Espace Formateurs
+- Publication d'actualités (avec images)
+- Attribution des notes
+- Gestion des emplois du temps
+- Liste des étudiants avec moyennes
+- Choix des sites d'intervention
 
-- Presence : `appelFonction("Presence")` (voir protocoles)
+### 📚 Formations disponibles
+| Code | Formation |
+|------|-----------|
+| ES | Éducateur Spécialisé |
+| ME | Moniteur Éducateur |
+| AES | Accompagnant Éducatif et Social |
+| CAFERUIS | Certificat d'Aptitude aux Fonctions d'Encadrement |
+| CAFDES | Certificat d'Aptitude aux Fonctions de Direction |
 
-- PageAcceuil (pour espace élèves et professeurs seulement) : `appelFonction("PageAcceuil")` (en cours de développement) (voir protocoles)
+### 📍 Sites de formation
+- **Saint-Laurent-Blangy** (Arras)
+- **Avion**
 
-- DernieresNotes (pour espace élèves seulement) : `appelFonction("DernieresNotes")` (voir protocoles)
+---
 
-- PageInfosPerso (pour espace élèves seulement) : `appelFonction("PageInfosPerso")` (voir protocoles)
+## 🚀 Installation
 
-- PageCahierDeTexte (pour espace élèves seulement) : `appelFonction("PageInfosPerso")` (voir protocoles)
+### Option 1 : Fichier unique (recommandé pour tester)
+1. Téléchargez `index.html`
+2. Ouvrez-le dans votre navigateur
+3. C'est prêt !
 
-- SaisiePenseBete (pour espace professeurs seulement) : `appelFonction("SaisiePenseBete")` (voir protocoles)
+### Option 2 : Serveur local
+```bash
+# Avec Python
+python -m http.server 8000
 
-- listeClassesGroupes (pour espace professeurs seulement) : `appelFonction("listeClassesGroupes")` (voir protocoles)
+# Avec Node.js
+npx serve .
 
-- ListePeriodes (pour espace professeurs seulement) : `appelFonction("ListePeriodes")` (voir protocoles)
+# Avec PHP
+php -S localhost:8000
+```
 
-- ListeServices (pour espace professeurs seulement) : `appelFonction("ListeServices")` (voir protocoles)
+### Option 3 : Hébergement en ligne (gratuit)
+- [Netlify](https://netlify.com) - Glissez-déposez le dossier
+- [Vercel](https://vercel.com) - Connectez votre GitHub
+- [GitHub Pages](https://pages.github.com) - Activez dans les paramètres du repo
 
-- Ce qui va venir ensuite : Capacité pour un prof à mettre des notes à un élève.
+---
 
-## Identifiants exemples (création automatique au démarrage du serveur):
-- Espace élèves : Identifiant: `akaty` Mot de passe : `Password123!`
-- Espace professeurs : Identifiant: `pgothier` Mot de passe : `Password123!`
+## 📱 Progressive Web App (PWA)
 
-## Protocole Client : 
-A venir...
+L'application peut être **installée** sur :
+- 📱 **Android** : Chrome → Menu → "Ajouter à l'écran d'accueil"
+- 📱 **iPhone** : Safari → Partager → "Sur l'écran d'accueil"
+- 💻 **Windows/Mac** : Chrome → Barre d'adresse → Icône d'installation
 
-## Protocole Server : 
-A venir...
+---
 
+## 🔐 Comptes de test
 
-## Crédits :
-Projet initié par Fufly / CaraPloof.
+| Type | Email | Mot de passe |
+|------|-------|--------------|
+| Admin | `admin@afertes.org` | `Admin123!` |
+
+Ou créez votre propre compte via l'inscription !
+
+---
+
+## 🛠️ Technologies
+
+- **HTML5** / **CSS3** / **JavaScript** (Vanilla)
+- **LocalStorage** pour la persistance des données
+- **PWA** avec manifest et service worker
+- **Responsive Design** (mobile-first)
+- **Charte graphique AFERTES** officielle
+
+---
+
+## 📁 Structure du projet
+
+```
+afertes-portail/
+├── index.html          # Application principale
+├── manifest.json       # Configuration PWA
+├── sw.js              # Service Worker (offline)
+├── README.md          # Documentation
+└── assets/
+    └── icons/         # Icônes PWA (optionnel)
+```
+
+---
+
+## 🔧 Configuration
+
+### Personnaliser les formations
+Dans `index.html`, modifiez l'objet `CONFIG` :
+
+```javascript
+const CONFIG = {
+    promos: ['ES', 'ME', 'AES', 'CAFERUIS', 'CAFDES'],
+    sites: ['SLB', 'Avion'],
+    siteNames: { 'SLB': 'Saint-Laurent-Blangy', 'Avion': 'Avion' }
+};
+```
+
+### Connecter à un backend
+Pour une utilisation en production avec base de données :
+1. Remplacez les fonctions `getData()` / `setData()` par des appels API
+2. Implémentez l'authentification côté serveur
+3. Ajoutez l'envoi d'emails pour la récupération de mot de passe
+
+---
+
+## 🚧 Roadmap
+
+- [ ] Backend Node.js / Express
+- [ ] Base de données PostgreSQL
+- [ ] Envoi d'emails (SendGrid)
+- [ ] Upload de fichiers (emplois du temps PDF)
+- [ ] Notifications push
+- [ ] Export PDF des notes
+- [ ] Calendrier interactif
+
+---
+
+## 📄 Licence
+
+Ce projet est sous licence **MIT**. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+---
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues !
+
+1. Forkez le projet
+2. Créez votre branche (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout nouvelle fonctionnalité'`)
+4. Pushez vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+---
+
+## 📞 Contact
+
+**AFERTES**
+- 🌐 Site : [afertes.org](https://afertes.org)
+- 📍 Saint-Laurent-Blangy : 1 rue Pierre et Marie Curie, 62223
+- 📍 Avion : Rue des Montagnards, 62210
+- 📞 Téléphone : 03 21 60 40 00
+
+---
+
+<p align="center">
+  Fait avec ❤️ pour l'AFERTES
+</p>

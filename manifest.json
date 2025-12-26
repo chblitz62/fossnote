@@ -1,0 +1,54 @@
+{
+  "name": "AFERTES - Portail de Formation",
+  "short_name": "AFERTES",
+  "description": "Portail de formation AFERTES - Espace étudiants et formateurs",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#1e3a5f",
+  "orientation": "portrait-primary",
+  "scope": "./",
+  "lang": "fr-FR",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='80' fill='%231e3a5f'/%3E%3Cpath d='M128 384L256 128L384 384' stroke='%23e84e8a' stroke-width='40' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M160 320H352' stroke='white' stroke-width='30' stroke-linecap='round'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='30' fill='%231e3a5f'/%3E%3Cpath d='M48 144L96 48L144 144' stroke='%23e84e8a' stroke-width='16' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M60 120H132' stroke='white' stroke-width='12' stroke-linecap='round'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Espace Étudiants",
+      "short_name": "Étudiants",
+      "description": "Accéder à l'espace étudiants",
+      "url": "./index.html#students",
+      "icons": [{"src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='16' fill='%2310b981'/%3E%3Ctext x='48' y='64' text-anchor='middle' font-size='48'%3E🎓%3C/text%3E%3C/svg%3E", "sizes": "96x96"}]
+    },
+    {
+      "name": "Espace Formateurs",
+      "short_name": "Formateurs",
+      "description": "Accéder à l'espace formateurs",
+      "url": "./index.html#teachers",
+      "icons": [{"src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='16' fill='%23e84e8a'/%3E%3Ctext x='48' y='64' text-anchor='middle' font-size='48'%3E👨‍🏫%3C/text%3E%3C/svg%3E", "sizes": "96x96"}]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'%3E%3Crect width='540' height='720' fill='%23f5f7fa'/%3E%3Crect y='0' width='540' height='60' fill='%231e3a5f'/%3E%3Ctext x='270' y='40' text-anchor='middle' fill='white' font-size='24'%3EAFERTES%3C/text%3E%3C/svg%3E",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow",
+      "label": "Écran d'accueil mobile"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

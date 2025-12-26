@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1e3a5f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="AFERTES">
+    <meta name="description" content="Portail de formation AFERTES - Espace étudiants et formateurs">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='30' fill='%231e3a5f'/%3E%3Cpath d='M45 135L90 45L135 135' stroke='%23e84e8a' stroke-width='14' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M56 112H124' stroke='white' stroke-width='10' stroke-linecap='round'/%3E%3C/svg%3E">
+    <title>AFERTES - Portail de Formation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============ CHARTE GRAPHIQUE AFERTES ============ */
+        :root {
+            /* Couleurs principales AFERTES */
+            --afertes-blue: #1e3a5f;
+            --afertes-blue-light: #2d5a8a;
+            --afertes-blue-dark: #152a45;
+            --afertes-pink: #e84e8a;
+            --afertes-pink-light: #f06a9e;
+            --afertes-pink-dark: #c93d73;
+            
+            /* Couleurs secondaires */
+            --gray-50: #f5f7fa;
+            --gray-100: #e8ecf1;
+            --gray-200: #d1d9e3;
+            --gray-300: #a8b5c4;
+            --gray-500: #64748b;
+            --gray-700: #334155;
+            --gray-900: #1e293b;
+            
+            /* États */
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --info: #3b82f6;
+            
+            /* Effets */
+            --shadow-sm: 0 1px 3px rgba(30,58,95,0.08);
+            --shadow: 0 4px 20px rgba(30,58,95,0.12);
+            --shadow-lg: 0 10px 40px rgba(30,58,95,0.16);
+            --radius: 12px;
+            --radius-lg: 20px;
+            
+            /* Couleurs promos */
+            --color-es: #10b981;
+            --color-me: #3b82f6;
+            --color-aes: #f59e0b;
+            --color-caferuis: #e84e8a;
+            --color-cafdes: #8b5cf6;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { height: 100%; scroll-behavior: smooth; }
+        body { 
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: var(--gray-50); 
+            color: var(--gray-900); 
+            min-height: 100%;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ============ HEADER ============ */
+        header {
+            background: linear-gradient(135deg, var(--afertes-blue) 0%, var(--afertes-blue-dark) 100%);
+            padding: 0.875rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.875rem;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .logo-container:hover { opacity: 0.9; }
+        
+        .logo-img {
+            height: 42px;
+            width: auto;
+        }
+        
+        .logo-text {
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+        .logo-text span {
+            font-size: 0.7rem;
+            opacity: 0.85;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .header-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .header-btn:hover { background: rgba(255,255,255,0.2); }
+        .header-btn.accent { 
+            background: var(--afertes-pink); 
+            border-color: var(--afertes-pink);
+        }
+        .header-btn.accent:hover { background: var(--afertes-pink-light); }
+
+        /* ============ MAIN ============ */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* ============ AUTH ============ */
+        .auth-container {
+            max-width: 440px;
+            margin: 2rem auto;
+        }
+        
+        .auth-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .auth-logo {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .auth-logo img { height: 50px; }
+        .auth-logo h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--afertes-blue);
+            margin-top: 0.75rem;
+            font-size: 1.5rem;
+        }
+        .auth-logo p {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+        
+        .auth-tabs {
+            display: flex;
+            background: var(--gray-100);
+            border-radius: 10px;
+            padding: 4px;
+            margin-bottom: 1.5rem;
+        }
+        .auth-tab {
+            flex: 1;
+            padding: 0.7rem;
+            text-align: center;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--gray-500);
+        }
+        .auth-tab.active {
+            background: white;
+            color: var(--afertes-blue);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .auth-form { display: none; }
+        .auth-form.active { display: block; }
+        
+        .form-group { margin-bottom: 1rem; }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+            color: var(--gray-700);
+        }
+        .form-group label .req { color: var(--afertes-pink); }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.2s;
+            background: white;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--afertes-blue);
+            box-shadow: 0 0 0 4px rgba(30,58,95,0.1);
+        }
+        .form-group .helper {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin-top: 0.3rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .password-wrapper { position: relative; }
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            opacity: 0.6;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .checkbox-group input { 
+            width: auto; 
+            margin-top: 3px;
+            accent-color: var(--afertes-blue);
+        }
+        .checkbox-group label {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            cursor: pointer;
+        }
+        .checkbox-group a { color: var(--afertes-blue); }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 0.875rem;
+            background: linear-gradient(135deg, var(--afertes-blue) 0%, var(--afertes-blue-light) 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(30,58,95,0.3);
+        }
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .submit-btn.pink {
+            background: linear-gradient(135deg, var(--afertes-pink) 0%, var(--afertes-pink-light) 100%);
+        }
+        
+        /* User Type Selection */
+        .user-type-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .user-type-card {
+            padding: 1.25rem;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .user-type-card:hover {
+            border-color: var(--afertes-blue-light);
+            background: var(--gray-50);
+        }
+        .user-type-card.selected {
+            border-color: var(--afertes-blue);
+            background: rgba(30,58,95,0.05);
+        }
+        .user-type-card .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .user-type-card .title { font-weight: 600; color: var(--afertes-blue); }
+        .user-type-card .desc { font-size: 0.75rem; color: var(--gray-500); margin-top: 0.2rem; }
+
+        /* ============ ALERT ============ */
+        .alert {
+            padding: 0.875rem 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+        }
+        .alert-success { background: rgba(16,185,129,0.1); color: #065f46; border-left: 4px solid var(--success); }
+        .alert-error { background: rgba(239,68,68,0.1); color: #b91c1c; border-left: 4px solid var(--error); }
+        .alert-info { background: rgba(59,130,246,0.1); color: #1e40af; border-left: 4px solid var(--info); }
+
+        /* ============ DASHBOARD ============ */
+        .dashboard { display: none; }
+        .dashboard.active { display: block; animation: fadeIn 0.4s ease; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--afertes-blue) 0%, var(--afertes-blue-light) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .welcome-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: var(--afertes-pink);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+        .welcome-banner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+        .welcome-banner p { opacity: 0.9; font-size: 0.95rem; }
+        .welcome-banner .badges { display: flex; gap: 0.5rem; margin-top: 0.75rem; flex-wrap: wrap; }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 1.5rem;
+            background: white;
+            padding: 0.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            padding: 0.6rem 1rem;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+        .tab-btn:hover { background: var(--gray-100); color: var(--gray-700); }
+        .tab-btn.active { 
+            background: var(--afertes-blue); 
+            color: white; 
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+        
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 1rem;
+        }
+        .card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--afertes-blue);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--gray-100);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card.full { grid-column: 1 / -1; }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        
+        /* Tags */
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .tag-es { background: rgba(16,185,129,0.15); color: var(--color-es); }
+        .tag-me { background: rgba(59,130,246,0.15); color: var(--color-me); }
+        .tag-aes { background: rgba(245,158,11,0.15); color: var(--color-aes); }
+        .tag-caferuis { background: rgba(232,78,138,0.15); color: var(--color-caferuis); }
+        .tag-cafdes { background: rgba(139,92,246,0.15); color: var(--color-cafdes); }
+        .tag-slb { background: rgba(30,58,95,0.1); color: var(--afertes-blue); }
+        .tag-avion { background: rgba(232,78,138,0.1); color: var(--afertes-pink); }
+        .tag-year { background: var(--gray-100); color: var(--gray-700); }
+
+        /* News Items */
+        .news-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .news-item:last-child { border-bottom: none; }
+        .news-item-header {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .news-item-img {
+            width: 80px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: var(--gray-100);
+            flex-shrink: 0;
+        }
+        .news-item-content { flex: 1; }
+        .news-item h4 {
+            color: var(--afertes-blue);
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .news-item p {
+            color: var(--gray-500);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .news-item .meta {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.6rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            font-size: 0.85rem;
+        }
+        .btn-primary { background: var(--afertes-blue); color: white; }
+        .btn-primary:hover { background: var(--afertes-blue-light); }
+        .btn-pink { background: var(--afertes-pink); color: white; }
+        .btn-pink:hover { background: var(--afertes-pink-light); }
+        .btn-success { background: var(--success); color: white; }
+        .btn-danger { background: var(--error); color: white; }
+        .btn-ghost { background: var(--gray-100); color: var(--gray-700); }
+        .btn-sm { padding: 0.4rem 0.75rem; font-size: 0.8rem; }
+        .btn-row { display: flex; gap: 0.75rem; margin-top: 1rem; flex-wrap: wrap; }
+        
+        /* Forms */
+        .add-form {
+            background: var(--gray-50);
+            padding: 1.25rem;
+            border-radius: var(--radius);
+            margin-bottom: 1.25rem;
+            border: 1px solid var(--gray-100);
+        }
+        .add-form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        /* Image Upload */
+        .img-upload {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .img-preview {
+            width: 100px;
+            height: 70px;
+            border-radius: 8px;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: var(--gray-400);
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+        .img-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .img-upload-input input { display: none; }
+        .img-upload-input label {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--afertes-blue);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        /* Multi-select chips */
+        .chips-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.4rem 0.75rem;
+            background: var(--gray-100);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+        .chip:hover { background: var(--gray-200); }
+        .chip.selected {
+            background: rgba(30,58,95,0.1);
+            border-color: var(--afertes-blue);
+            color: var(--afertes-blue);
+        }
+        
+        /* Data Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        .data-table th,
+        .data-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .data-table th {
+            background: var(--afertes-blue);
+            color: white;
+            font-weight: 600;
+        }
+        .data-table th:first-child { border-radius: 8px 0 0 0; }
+        .data-table th:last-child { border-radius: 0 8px 0 0; }
+        .data-table tr:hover td { background: var(--gray-50); }
+        
+        .grade-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        .grade-good { background: rgba(16,185,129,0.15); color: var(--success); }
+        .grade-warning { background: rgba(245,158,11,0.15); color: var(--warning); }
+        .grade-bad { background: rgba(239,68,68,0.15); color: var(--error); }
+        
+        /* Profile */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .profile-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--afertes-blue) 0%, var(--afertes-pink) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 600;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .profile-info h3 { color: var(--afertes-blue); font-size: 1.25rem; }
+        .profile-info p { color: var(--gray-500); font-size: 0.9rem; }
+        
+        .profile-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+        
+        /* Data list */
+        .data-list { max-height: 400px; overflow-y: auto; }
+        .data-item {
+            padding: 0.875rem;
+            border-bottom: 1px solid var(--gray-100);
+            transition: background 0.2s;
+        }
+        .data-item:hover { background: var(--gray-50); }
+        .data-item:last-child { border-bottom: none; }
+        
+        /* File items */
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: var(--gray-50);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+        .file-info { display: flex; align-items: center; gap: 0.75rem; }
+        .file-icon { font-size: 1.5rem; }
+        
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .filter-group label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+        .filter-group select {
+            padding: 0.5rem 0.75rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            background: white;
+        }
+        
+        /* Settings */
+        .settings-section {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        .settings-section:last-child { border-bottom: none; }
+        .settings-section h4 {
+            color: var(--afertes-blue);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(30,58,95,0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 1rem;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            max-width: 450px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal { transform: scale(1); }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
+        }
+        .modal-header h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--afertes-blue);
+            font-size: 1.2rem;
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray-400);
+            cursor: pointer;
+            line-height: 1;
+        }
+        .close-btn:hover { color: var(--gray-600); }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--gray-500);
+            font-size: 0.85rem;
+        }
+        footer a { color: var(--afertes-pink); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        .footer-sites { font-size: 0.8rem; margin-top: 0.25rem; }
+        
+        /* Responsive */
+        @media (max-width: 640px) {
+            header { padding: 0.75rem 1rem; }
+            .logo-text h1 { font-size: 1.15rem; }
+            .logo-img { height: 36px; }
+            main { padding: 1rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .user-type-grid { grid-template-columns: 1fr; }
+            .tabs { padding: 0.4rem; }
+            .tab-btn { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
+            .profile-form { grid-template-columns: 1fr; }
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: var(--gray-100); }
+        ::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gray-400); }
+        
+        /* Quick actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 0.75rem;
+        }
+        .quick-action {
+            padding: 1rem 0.75rem;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-100);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .quick-action:hover {
+            background: var(--afertes-blue);
+            color: white;
+            border-color: var(--afertes-blue);
+            transform: translateY(-2px);
+        }
+        .quick-action .icon { font-size: 1.5rem; margin-bottom: 0.4rem; }
+        .quick-action .label { font-size: 0.8rem; font-weight: 500; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="https://afertes.org" target="_blank" class="logo-container" title="Visiter afertes.org">
+            <img src="https://afertes.org/wp-content/uploads/2024/12/cropped-Afertes-logo-175x56.png" alt="AFERTES" class="logo-img" onerror="this.style.display='none'">
+            <div class="logo-text">
+                <h1>AFERTES</h1>
+                <span>Centre de formation en travail social</span>
+            </div>
+        </a>
+        <div class="header-actions" id="header-actions"></div>
+    </header>
+
+    <main>
+        <!-- AUTH SECTION -->
+        <div id="auth-section" class="auth-container">
+            <div class="auth-card">
+                <div class="auth-logo">
+                    <img src="https://afertes.org/wp-content/uploads/2024/12/cropped-Afertes-logo-175x56.png" alt="AFERTES" onerror="this.style.display='none'">
+                    <h2>Portail de Formation</h2>
+                    <p>Connectez-vous ou créez votre compte</p>
+                </div>
+                
+                <div id="auth-alert"></div>
+                
+                <div class="auth-tabs">
+                    <button class="auth-tab active" onclick="switchAuthTab('login')">Connexion</button>
+                    <button class="auth-tab" onclick="switchAuthTab('register')">Inscription</button>
+                </div>
+                
+                <!-- LOGIN -->
+                <form id="login-form" class="auth-form active" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Email <span class="req">*</span></label>
+                        <input type="email" id="login-email" placeholder="votre@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mot de passe <span class="req">*</span></label>
+                        <div class="password-wrapper">
+                            <input type="password" id="login-password" placeholder="••••••••" required>
+                            <button type="button" class="password-toggle" onclick="togglePw('login-password',this)">👁️</button>
+                        </div>
+                    </div>
+                    <div style="text-align:right;margin-bottom:1rem;">
+                        <a href="#" onclick="showForgotPw()" style="font-size:0.85rem;color:var(--afertes-blue);">Mot de passe oublié ?</a>
+                    </div>
+                    <button type="submit" class="submit-btn">Se connecter</button>
+                </form>
+                
+                <!-- REGISTER -->
+                <form id="register-form" class="auth-form" onsubmit="handleRegister(event)">
+                    <div id="reg-step1">
+                        <p style="margin-bottom:1rem;font-weight:500;">Je suis :</p>
+                        <div class="user-type-grid">
+                            <div class="user-type-card" onclick="selectType('student')" data-type="student">
+                                <div class="icon">🎓</div>
+                                <div class="title">Étudiant</div>
+                                <div class="desc">En formation</div>
+                            </div>
+                            <div class="user-type-card" onclick="selectType('teacher')" data-type="teacher">
+                                <div class="icon">👨‍🏫</div>
+                                <div class="title">Formateur</div>
+                                <div class="desc">Personnel pédagogique</div>
+                            </div>
+                        </div>
+                        <button type="button" class="submit-btn" onclick="nextStep()" id="next-btn" disabled>Continuer</button>
+                    </div>
+                    
+                    <div id="reg-step2" style="display:none;">
+                        <div class="form-row">
+                            <div class="form-group"><label>Prénom <span class="req">*</span></label><input type="text" id="reg-prenom" required></div>
+                            <div class="form-group"><label>Nom <span class="req">*</span></label><input type="text" id="reg-nom" required></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email <span class="req">*</span></label>
+                            <input type="email" id="reg-email" placeholder="votre@email.com" required>
+                            <p class="helper">Pour la connexion et récupération du mot de passe</p>
+                        </div>
+                        <div class="form-group"><label>Téléphone</label><input type="tel" id="reg-tel" placeholder="06 XX XX XX XX"></div>
+                        
+                        <!-- Student fields -->
+                        <div id="student-fields">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Formation <span class="req">*</span></label>
+                                    <select id="reg-promo" required>
+                                        <option value="">Sélectionner...</option>
+                                        <option value="ES">ES - Éducateur Spécialisé</option>
+                                        <option value="ME">ME - Moniteur Éducateur</option>
+                                        <option value="AES">AES - Accompagnant Éducatif et Social</option>
+                                        <option value="CAFERUIS">CAFERUIS</option>
+                                        <option value="CAFDES">CAFDES</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Année de promo <span class="req">*</span></label>
+                                    <select id="reg-year" required></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Site de formation <span class="req">*</span></label>
+                                <select id="reg-site" required>
+                                    <option value="">Sélectionner...</option>
+                                    <option value="SLB">Saint-Laurent-Blangy (Arras)</option>
+                                    <option value="Avion">Avion</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Teacher fields -->
+                        <div id="teacher-fields" style="display:none;">
+                            <div class="form-group">
+                                <label>Sites d'intervention</label>
+                                <div class="chips-container" id="teacher-sites-chips">
+                                    <div class="chip" data-value="SLB" onclick="toggleChip(this)">📍 Saint-Laurent-Blangy</div>
+                                    <div class="chip" data-value="Avion" onclick="toggleChip(this)">📍 Avion</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Formations enseignées</label>
+                                <div class="chips-container" id="teacher-promos-chips">
+                                    <div class="chip" data-value="ES" onclick="toggleChip(this)">ES</div>
+                                    <div class="chip" data-value="ME" onclick="toggleChip(this)">ME</div>
+                                    <div class="chip" data-value="AES" onclick="toggleChip(this)">AES</div>
+                                    <div class="chip" data-value="CAFERUIS" onclick="toggleChip(this)">CAFERUIS</div>
+                                    <div class="chip" data-value="CAFDES" onclick="toggleChip(this)">CAFDES</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Mot de passe <span class="req">*</span></label>
+                            <div class="password-wrapper">
+                                <input type="password" id="reg-password" placeholder="Minimum 8 caractères" required minlength="8">
+                                <button type="button" class="password-toggle" onclick="togglePw('reg-password',this)">👁️</button>
+                            </div>
+                            <p class="helper">8 caractères min, 1 majuscule, 1 chiffre</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Confirmer <span class="req">*</span></label>
+                            <div class="password-wrapper">
+                                <input type="password" id="reg-password2" required>
+                                <button type="button" class="password-toggle" onclick="togglePw('reg-password2',this)">👁️</button>
+                            </div>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="reg-terms" required>
+                            <label for="reg-terms">J'accepte les <a href="#">conditions d'utilisation</a></label>
+                        </div>
+                        
+                        <div class="btn-row">
+                            <button type="button" class="btn btn-ghost" onclick="prevStep()">← Retour</button>
+                            <button type="submit" class="submit-btn pink" style="flex:1;">Créer mon compte</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- FORGOT PASSWORD MODAL -->
+        <div class="modal-overlay" id="forgot-modal">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3>🔐 Mot de passe oublié</h3>
+                    <button class="close-btn" onclick="closeForgotModal()">×</button>
+                </div>
+                <div id="forgot-alert"></div>
+                <form onsubmit="handleForgotPw(event)">
+                    <div class="form-group">
+                        <label>Email de votre compte</label>
+                        <input type="email" id="forgot-email" placeholder="votre@email.com" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Envoyer le lien</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- DASHBOARD -->
+        <div id="dashboard-section" class="dashboard"></div>
+    </main>
+
+    <footer>
+        <p>© 2024 AFERTES | <a href="https://afertes.org" target="_blank">afertes.org</a></p>
+        <p class="footer-sites">Saint-Laurent-Blangy (Arras) • Avion</p>
+    </footer>
+
+<script>
+// ============ CONFIG ============
+const CONFIG = {
+    promos: ['ES', 'ME', 'AES', 'CAFERUIS', 'CAFDES'],
+    promoNames: {
+        'ES': 'Éducateur Spécialisé',
+        'ME': 'Moniteur Éducateur',
+        'AES': 'Accompagnant Éducatif et Social',
+        'CAFERUIS': 'CAFERUIS',
+        'CAFDES': 'CAFDES'
+    },
+    sites: ['SLB', 'Avion'],
+    siteNames: { 'SLB': 'Saint-Laurent-Blangy', 'Avion': 'Avion' },
+    promoColors: { 'ES': 'tag-es', 'ME': 'tag-me', 'AES': 'tag-aes', 'CAFERUIS': 'tag-caferuis', 'CAFDES': 'tag-cafdes' },
+    siteColors: { 'SLB': 'tag-slb', 'Avion': 'tag-avion' }
+};
+
+const KEYS = { users: 'af_users', session: 'af_session', news: 'af_news', grades: 'af_grades', schedules: 'af_schedules', messages: 'af_messages', settings: 'af_settings' };
+
+// ============ UTILS ============
+const getData = k => JSON.parse(localStorage.getItem(k) || '[]');
+const setData = (k, d) => localStorage.setItem(k, JSON.stringify(d));
+const getSession = () => JSON.parse(localStorage.getItem(KEYS.session) || 'null');
+const setSession = u => localStorage.setItem(KEYS.session, JSON.stringify(u));
+const clearSession = () => localStorage.removeItem(KEYS.session);
+const formatDate = d => new Date(d).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+const getGradeClass = v => v >= 14 ? 'grade-good' : v >= 10 ? 'grade-warning' : 'grade-bad';
+const createTag = (t, type) => `<span class="tag ${type === 'promo' ? CONFIG.promoColors[t] || '' : CONFIG.siteColors[t] || ''}">${type === 'site' ? CONFIG.siteNames[t] || t : t}</span>`;
+const hashPw = p => { let h = 0; for (let i = 0; i < p.length; i++) { h = ((h << 5) - h) + p.charCodeAt(i); h = h & h; } return 'h_' + Math.abs(h).toString(16); };
+const validatePw = p => p.length >= 8 && /[A-Z]/.test(p) && /[0-9]/.test(p);
+const showAlert = (id, type, msg) => document.getElementById(id).innerHTML = `<div class="alert alert-${type}">${msg}</div>`;
+
+// Generate years
+function generateYears() {
+    const select = document.getElementById('reg-year');
+    const currentYear = new Date().getFullYear();
+    select.innerHTML = '<option value="">Sélectionner...</option>';
+    for (let y = currentYear + 2; y >= currentYear - 5; y--) {
+        select.innerHTML += `<option value="${y}">${y} - ${y + 1}</option>`;
+    }
+}
+
+// ============ INIT ============
+function initData() {
+    if (!getData(KEYS.users).length) {
+        setData(KEYS.users, [
+            { id: 1, type: 'admin', email: 'admin@afertes.org', password: hashPw('Admin123!'), prenom: 'Admin', nom: 'AFERTES', createdAt: new Date().toISOString() }
+        ]);
+    }
+    if (!getData(KEYS.news).length) {
+        setData(KEYS.news, [
+            { id: 1, title: "Bienvenue sur le nouveau portail AFERTES", content: "Le nouveau portail est maintenant disponible. Créez votre compte pour accéder à toutes les fonctionnalités.", date: new Date().toISOString().split('T')[0], author: "Administration", promos: [], sites: [], priority: "important", image: "" },
+            { id: 2, title: "Rentrée 2024-2025", content: "La rentrée aura lieu le 2 septembre. Tous les étudiants sont invités à 9h00.", date: "2024-08-15", author: "Direction", promos: [], sites: [], priority: "normal", image: "" }
+        ]);
+    }
+    if (!getData(KEYS.settings)) {
+        setData(KEYS.settings, { currentYear: new Date().getFullYear() });
+    }
+    generateYears();
+}
+
+// ============ AUTH ============
+let selectedType = null;
+let currentUser = null;
+
+function switchAuthTab(tab) {
+    document.querySelectorAll('.auth-tab').forEach((t, i) => t.classList.toggle('active', (tab === 'login' ? i === 0 : i === 1)));
+    document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+    document.getElementById(tab === 'login' ? 'login-form' : 'register-form').classList.add('active');
+    document.getElementById('auth-alert').innerHTML = '';
+    if (tab === 'register') {
+        document.getElementById('reg-step1').style.display = 'block';
+        document.getElementById('reg-step2').style.display = 'none';
+        selectedType = null;
+        document.querySelectorAll('.user-type-card').forEach(c => c.classList.remove('selected'));
+        document.getElementById('next-btn').disabled = true;
+    }
+}
+
+function selectType(type) {
+    selectedType = type;
+    document.querySelectorAll('.user-type-card').forEach(c => c.classList.toggle('selected', c.dataset.type === type));
+    document.getElementById('next-btn').disabled = false;
+}
+
+function nextStep() {
+    if (!selectedType) return;
+    document.getElementById('reg-step1').style.display = 'none';
+    document.getElementById('reg-step2').style.display = 'block';
+    document.getElementById('student-fields').style.display = selectedType === 'student' ? 'block' : 'none';
+    document.getElementById('teacher-fields').style.display = selectedType === 'teacher' ? 'block' : 'none';
+    document.getElementById('reg-promo').required = selectedType === 'student';
+    document.getElementById('reg-year').required = selectedType === 'student';
+    document.getElementById('reg-site').required = selectedType === 'student';
+}
+
+function prevStep() {
+    document.getElementById('reg-step1').style.display = 'block';
+    document.getElementById('reg-step2').style.display = 'none';
+}
+
+function togglePw(id, btn) {
+    const input = document.getElementById(id);
+    input.type = input.type === 'password' ? 'text' : 'password';
+    btn.textContent = input.type === 'password' ? '👁️' : '🙈';
+}
+
+function toggleChip(chip) {
+    chip.classList.toggle('selected');
+}
+
+function getSelectedChips(containerId) {
+    return Array.from(document.querySelectorAll(`#${containerId} .chip.selected`)).map(c => c.dataset.value);
+}
+
+function handleLogin(e) {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value.trim().toLowerCase();
+    const password = document.getElementById('login-password').value;
+    const users = getData(KEYS.users);
+    const user = users.find(u => u.email.toLowerCase() === email);
+    if (!user) return showAlert('auth-alert', 'error', 'Aucun compte avec cet email');
+    if (user.password !== hashPw(password)) return showAlert('auth-alert', 'error', 'Mot de passe incorrect');
+    setSession(user);
+    currentUser = user;
+    showDashboard();
+}
+
+function handleRegister(e) {
+    e.preventDefault();
+    const email = document.getElementById('reg-email').value.trim().toLowerCase();
+    const password = document.getElementById('reg-password').value;
+    const password2 = document.getElementById('reg-password2').value;
+    
+    if (!validatePw(password)) return showAlert('auth-alert', 'error', 'Mot de passe : 8 car. min, 1 majuscule, 1 chiffre');
+    if (password !== password2) return showAlert('auth-alert', 'error', 'Les mots de passe ne correspondent pas');
+    
+    const users = getData(KEYS.users);
+    if (users.find(u => u.email.toLowerCase() === email)) return showAlert('auth-alert', 'error', 'Email déjà utilisé');
+    
+    const newUser = {
+        id: Date.now(),
+        type: selectedType,
+        email,
+        password: hashPw(password),
+        prenom: document.getElementById('reg-prenom').value.trim(),
+        nom: document.getElementById('reg-nom').value.trim(),
+        tel: document.getElementById('reg-tel').value.trim(),
+        photo: null,
+        createdAt: new Date().toISOString()
+    };
+    
+    if (selectedType === 'student') {
+        newUser.promo = document.getElementById('reg-promo').value;
+        newUser.year = document.getElementById('reg-year').value;
+        newUser.site = document.getElementById('reg-site').value;
+        newUser.adresse = '';
+        newUser.cp = '';
+        newUser.ville = '';
+        newUser.dob = '';
+    } else {
+        newUser.sites = getSelectedChips('teacher-sites-chips');
+        newUser.promos = getSelectedChips('teacher-promos-chips');
+    }
+    
+    users.push(newUser);
+    setData(KEYS.users, users);
+    setSession(newUser);
+    currentUser = newUser;
+    showAlert('auth-alert', 'success', 'Compte créé ! Redirection...');
+    setTimeout(() => showDashboard(), 1500);
+}
+
+function showForgotPw() { document.getElementById('forgot-modal').classList.add('active'); }
+function closeForgotModal() { document.getElementById('forgot-modal').classList.remove('active'); }
+
+function handleForgotPw(e) {
+    e.preventDefault();
+    const email = document.getElementById('forgot-email').value.trim().toLowerCase();
+    const users = getData(KEYS.users);
+    const user = users.find(u => u.email.toLowerCase() === email);
+    if (!user) return showAlert('forgot-alert', 'error', 'Aucun compte avec cet email');
+    const tempPw = 'Temp' + Math.random().toString(36).substr(2, 6) + '1!';
+    user.password = hashPw(tempPw);
+    setData(KEYS.users, users);
+    showAlert('forgot-alert', 'success', `Mot de passe temporaire : <code style="background:#f0f0f0;padding:2px 6px;border-radius:4px;">${tempPw}</code>`);
+}
+
+function logout() {
+    clearSession();
+    currentUser = null;
+    document.getElementById('auth-section').style.display = 'block';
+    document.getElementById('dashboard-section').classList.remove('active');
+    document.getElementById('login-form').reset();
+    switchAuthTab('login');
+    updateHeader();
+}
+
+// ============ DASHBOARD ============
+function showDashboard() {
+    document.getElementById('auth-section').style.display = 'none';
+    document.getElementById('dashboard-section').classList.add('active');
+    updateHeader();
+    renderDashboard();
+}
+
+function updateHeader() {
+    const actions = document.getElementById('header-actions');
+    if (currentUser) {
+        actions.innerHTML = `
+            <button class="header-btn" onclick="switchTab('settings')">⚙️</button>
+            <button class="header-btn">${currentUser.prenom}</button>
+            <button class="header-btn accent" onclick="logout()">Déconnexion</button>
+        `;
+    } else {
+        actions.innerHTML = '';
+    }
+}
+
+function renderDashboard() {
+    const dash = document.getElementById('dashboard-section');
+    const isStudent = currentUser.type === 'student';
+    const isTeacher = currentUser.type === 'teacher' || currentUser.type === 'admin';
+    
+    const badges = [];
+    if (currentUser.promo) badges.push(createTag(currentUser.promo, 'promo'));
+    if (currentUser.year) badges.push(`<span class="tag tag-year">${currentUser.year}-${parseInt(currentUser.year)+1}</span>`);
+    if (currentUser.site) badges.push(createTag(currentUser.site, 'site'));
+    if (currentUser.sites?.length) currentUser.sites.forEach(s => badges.push(createTag(s, 'site')));
+    
+    dash.innerHTML = `
+        <div class="welcome-banner">
+            <h2>Bonjour ${currentUser.prenom} 👋</h2>
+            <p>${isStudent ? 'Bienvenue dans votre espace étudiant' : 'Bienvenue dans votre espace formateur'}</p>
+            <div class="badges">${badges.join('')}</div>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="home">🏠 Accueil</button>
+            ${isStudent ? '<button class="tab-btn" data-tab="profile">👤 Profil</button>' : ''}
+            ${isStudent ? '<button class="tab-btn" data-tab="grades">📊 Notes</button>' : ''}
+            ${isStudent ? '<button class="tab-btn" data-tab="schedule">📅 EDT</button>' : ''}
+            ${isTeacher ? '<button class="tab-btn" data-tab="news-manage">📰 Actualités</button>' : ''}
+            ${isTeacher ? '<button class="tab-btn" data-tab="grades-manage">📊 Notes</button>' : ''}
+            ${isTeacher ? '<button class="tab-btn" data-tab="schedule-manage">📅 EDT</button>' : ''}
+            ${isTeacher ? '<button class="tab-btn" data-tab="students">👥 Étudiants</button>' : ''}
+            <button class="tab-btn" data-tab="settings">⚙️ Paramètres</button>
+        </div>
+        
+        <div id="tab-home" class="tab-content active">${renderHome()}</div>
+        ${isStudent ? `<div id="tab-profile" class="tab-content">${renderProfile()}</div>` : ''}
+        ${isStudent ? `<div id="tab-grades" class="tab-content">${renderStudentGrades()}</div>` : ''}
+        ${isStudent ? `<div id="tab-schedule" class="tab-content">${renderStudentSchedule()}</div>` : ''}
+        ${isTeacher ? `<div id="tab-news-manage" class="tab-content">${renderNewsManage()}</div>` : ''}
+        ${isTeacher ? `<div id="tab-grades-manage" class="tab-content">${renderGradesManage()}</div>` : ''}
+        ${isTeacher ? `<div id="tab-schedule-manage" class="tab-content">${renderScheduleManage()}</div>` : ''}
+        ${isTeacher ? `<div id="tab-students" class="tab-content">${renderStudents()}</div>` : ''}
+        <div id="tab-settings" class="tab-content">${renderSettings()}</div>
+    `;
+    
+    dash.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            dash.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            dash.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById('tab-' + btn.dataset.tab)?.classList.add('active');
+        });
+    });
+}
+
+function switchTab(name) {
+    const dash = document.getElementById('dashboard-section');
+    dash.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+    dash.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.getElementById('tab-' + name)?.classList.add('active');
+}
+
+function renderHome() {
+    const news = getData(KEYS.news).slice(0, 5);
+    const isStudent = currentUser.type === 'student';
+    
+    return `
+        <div class="grid-2">
+            <div class="card">
+                <h3>⚡ Actions rapides</h3>
+                <div class="quick-actions">
+                    ${isStudent ? `
+                        <div class="quick-action" onclick="switchTab('profile')"><div class="icon">👤</div><div class="label">Profil</div></div>
+                        <div class="quick-action" onclick="switchTab('grades')"><div class="icon">📊</div><div class="label">Notes</div></div>
+                        <div class="quick-action" onclick="switchTab('schedule')"><div class="icon">📅</div><div class="label">EDT</div></div>
+                    ` : `
+                        <div class="quick-action" onclick="switchTab('news-manage')"><div class="icon">📰</div><div class="label">Actualités</div></div>
+                        <div class="quick-action" onclick="switchTab('grades-manage')"><div class="icon">📊</div><div class="label">Notes</div></div>
+                        <div class="quick-action" onclick="switchTab('students')"><div class="icon">👥</div><div class="label">Étudiants</div></div>
+                    `}
+                    <div class="quick-action" onclick="switchTab('settings')"><div class="icon">⚙️</div><div class="label">Paramètres</div></div>
+                </div>
+            </div>
+            <div class="card">
+                <h3>📰 Actualités récentes</h3>
+                <div class="data-list">
+                    ${news.length ? news.map(n => `
+                        <div class="news-item">
+                            <div class="news-item-header">
+                                ${n.image ? `<img src="${n.image}" class="news-item-img" onerror="this.style.display='none'">` : ''}
+                                <div class="news-item-content">
+                                    <h4>${n.priority === 'urgent' ? '🔴 ' : n.priority === 'important' ? '🟠 ' : ''}${n.title}</h4>
+                                    <p>${n.content.substring(0, 80)}${n.content.length > 80 ? '...' : ''}</p>
+                                    <div class="meta">${formatDate(n.date)} ${n.promos?.length ? n.promos.map(p => createTag(p, 'promo')).join('') : ''}</div>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('') : '<p style="color:var(--gray-500);padding:1rem;text-align:center;">Aucune actualité</p>'}
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function renderProfile() {
+    return `
+        <div class="card">
+            <h3>👤 Mon Profil</h3>
+            <div id="profile-alert"></div>
+            <div class="profile-header">
+                <div class="profile-avatar">${currentUser.photo ? `<img src="${currentUser.photo}">` : currentUser.prenom.charAt(0) + currentUser.nom.charAt(0)}</div>
+                <div class="profile-info">
+                    <h3>${currentUser.prenom} ${currentUser.nom}</h3>
+                    <p>${currentUser.email}</p>
+                    <p>${createTag(currentUser.promo, 'promo')} <span class="tag tag-year">${currentUser.year}-${parseInt(currentUser.year)+1}</span> ${createTag(currentUser.site, 'site')}</p>
+                </div>
+            </div>
+            <form onsubmit="saveProfile(event)" class="profile-form">
+                <div class="form-group"><label>Prénom</label><input type="text" id="prof-prenom" value="${currentUser.prenom}" required></div>
+                <div class="form-group"><label>Nom</label><input type="text" id="prof-nom" value="${currentUser.nom}" required></div>
+                <div class="form-group"><label>Email</label><input type="email" id="prof-email" value="${currentUser.email}" required></div>
+                <div class="form-group"><label>Téléphone</label><input type="tel" id="prof-tel" value="${currentUser.tel || ''}"></div>
+                <div class="form-group"><label>Adresse</label><input type="text" id="prof-adresse" value="${currentUser.adresse || ''}"></div>
+                <div class="form-group"><label>Code Postal</label><input type="text" id="prof-cp" value="${currentUser.cp || ''}"></div>
+                <div class="form-group"><label>Ville</label><input type="text" id="prof-ville" value="${currentUser.ville || ''}"></div>
+                <div class="form-group"><label>Date de naissance</label><input type="date" id="prof-dob" value="${currentUser.dob || ''}"></div>
+                <div style="grid-column:1/-1;"><button type="submit" class="btn btn-primary">💾 Enregistrer</button></div>
+            </form>
+        </div>
+    `;
+}
+
+function saveProfile(e) {
+    e.preventDefault();
+    const users = getData(KEYS.users);
+    const idx = users.findIndex(u => u.id === currentUser.id);
+    if (idx === -1) return;
+    ['prenom', 'nom', 'email', 'tel', 'adresse', 'cp', 'ville', 'dob'].forEach(f => users[idx][f] = document.getElementById('prof-' + f).value);
+    setData(KEYS.users, users);
+    currentUser = users[idx];
+    setSession(currentUser);
+    showAlert('profile-alert', 'success', '✓ Profil mis à jour');
+    updateHeader();
+}
+
+function renderStudentGrades() {
+    const grades = getData(KEYS.grades).filter(g => g.studentId === currentUser.id);
+    return `
+        <div class="card">
+            <h3>📊 Mes Notes</h3>
+            ${grades.length ? `
+                <table class="data-table">
+                    <thead><tr><th>Matière</th><th>Note</th><th>Coef</th><th>Date</th><th>Commentaire</th></tr></thead>
+                    <tbody>${grades.map(g => `<tr><td>${g.subject}</td><td><span class="grade-badge ${getGradeClass(g.value)}">${g.value}/20</span></td><td>${g.coef}</td><td>${formatDate(g.date)}</td><td>${g.comment || '-'}</td></tr>`).join('')}</tbody>
+                </table>
+            ` : '<p style="color:var(--gray-500);text-align:center;padding:2rem;">Aucune note</p>'}
+        </div>
+    `;
+}
+
+function renderStudentSchedule() {
+    const schedules = getData(KEYS.schedules).filter(s => (!s.promo || s.promo === currentUser.promo) && (!s.site || s.site === currentUser.site));
+    return `
+        <div class="card">
+            <h3>📅 Emploi du Temps</h3>
+            ${schedules.length ? schedules.map(s => `
+                <div class="file-item">
+                    <div class="file-info"><span class="file-icon">📄</span><div><strong>${s.name}</strong><p style="font-size:0.8rem;color:var(--gray-500);">${s.promo ? createTag(s.promo, 'promo') : ''} ${s.site ? createTag(s.site, 'site') : ''}</p></div></div>
+                </div>
+            `).join('') : '<p style="color:var(--gray-500);text-align:center;padding:2rem;">Aucun emploi du temps</p>'}
+        </div>
+    `;
+}
+
+function renderNewsManage() {
+    const news = getData(KEYS.news);
+    const years = [];
+    const currentYear = new Date().getFullYear();
+    for (let y = currentYear + 1; y >= currentYear - 3; y--) years.push(y);
+    
+    return `
+        <div class="card">
+            <h3>📰 Gérer les Actualités</h3>
+            <div class="add-form">
+                <div class="img-upload">
+                    <div class="img-preview" id="news-img-preview">📷</div>
+                    <div class="img-upload-input">
+                        <label for="news-img-input">Ajouter une image</label>
+                        <input type="file" id="news-img-input" accept="image/*" onchange="previewNewsImg(this)">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Titre</label><input type="text" id="news-title" placeholder="Titre de l'actualité"></div>
+                    <div class="form-group"><label>Priorité</label><select id="news-priority"><option value="normal">Normale</option><option value="important">Importante</option><option value="urgent">Urgente</option></select></div>
+                </div>
+                <div class="form-group"><label>Contenu</label><textarea id="news-content" placeholder="Contenu de l'actualité..."></textarea></div>
+                <div class="form-group">
+                    <label>Formations concernées</label>
+                    <div class="chips-container" id="news-promos-chips">
+                        ${CONFIG.promos.map(p => `<div class="chip" data-value="${p}" onclick="toggleChip(this)">${p}</div>`).join('')}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Sites concernés</label>
+                    <div class="chips-container" id="news-sites-chips">
+                        ${CONFIG.sites.map(s => `<div class="chip" data-value="${s}" onclick="toggleChip(this)">${CONFIG.siteNames[s]}</div>`).join('')}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Années de promo</label>
+                    <div class="chips-container" id="news-years-chips">
+                        ${years.map(y => `<div class="chip" data-value="${y}" onclick="toggleChip(this)">${y}-${y+1}</div>`).join('')}
+                    </div>
+                </div>
+                <button class="btn btn-pink" onclick="addNews()">📰 Publier</button>
+            </div>
+            <h4 style="color:var(--afertes-blue);margin:1.5rem 0 1rem;">Actualités publiées</h4>
+            <div class="data-list">
+                ${news.map(n => `
+                    <div class="news-item">
+                        <div class="news-item-header">
+                            ${n.image ? `<img src="${n.image}" class="news-item-img">` : ''}
+                            <div class="news-item-content" style="flex:1;">
+                                <h4 style="justify-content:space-between;">
+                                    <span>${n.priority === 'urgent' ? '🔴 ' : n.priority === 'important' ? '🟠 ' : ''}${n.title}</span>
+                                    <button class="btn btn-danger btn-sm" onclick="deleteNews(${n.id})">🗑️</button>
+                                </h4>
+                                <p>${n.content}</p>
+                                <div class="meta">${formatDate(n.date)} ${n.promos?.length ? n.promos.map(p => createTag(p, 'promo')).join('') : '<span class="tag">Tous</span>'} ${n.sites?.length ? n.sites.map(s => createTag(s, 'site')).join('') : ''}</div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+
+let newsImageData = '';
+function previewNewsImg(input) {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            newsImageData = e.target.result;
+            document.getElementById('news-img-preview').innerHTML = `<img src="${newsImageData}">`;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function addNews() {
+    const title = document.getElementById('news-title').value.trim();
+    const content = document.getElementById('news-content').value.trim();
+    if (!title || !content) return alert('Remplissez titre et contenu');
+    
+    const news = getData(KEYS.news);
+    news.unshift({
+        id: Date.now(),
+        title,
+        content,
+        date: new Date().toISOString().split('T')[0],
+        author: currentUser.prenom + ' ' + currentUser.nom,
+        priority: document.getElementById('news-priority').value,
+        promos: getSelectedChips('news-promos-chips'),
+        sites: getSelectedChips('news-sites-chips'),
+        years: getSelectedChips('news-years-chips'),
+        image: newsImageData
+    });
+    setData(KEYS.news, news);
+    newsImageData = '';
+    renderDashboard();
+    switchTab('news-manage');
+}
+
+function deleteNews(id) {
+    if (!confirm('Supprimer ?')) return;
+    setData(KEYS.news, getData(KEYS.news).filter(n => n.id !== id));
+    renderDashboard();
+    switchTab('news-manage');
+}
+
+function renderGradesManage() {
+    const students = getData(KEYS.users).filter(u => u.type === 'student');
+    const grades = getData(KEYS.grades);
+    const currentYear = new Date().getFullYear();
+    const years = [];
+    for (let y = currentYear + 1; y >= currentYear - 3; y--) years.push(y);
+    
+    return `
+        <div class="card">
+            <h3>📊 Attribuer des Notes</h3>
+            <div class="add-form">
+                <div class="filters">
+                    <div class="filter-group"><label>Formation:</label><select id="grade-filter-promo" onchange="updateStudentSelect()"><option value="">Toutes</option>${CONFIG.promos.map(p => `<option value="${p}">${p}</option>`).join('')}</select></div>
+                    <div class="filter-group"><label>Année:</label><select id="grade-filter-year" onchange="updateStudentSelect()"><option value="">Toutes</option>${years.map(y => `<option value="${y}">${y}-${y+1}</option>`).join('')}</select></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Étudiant</label><select id="grade-student"></select></div>
+                    <div class="form-group"><label>Matière</label><input type="text" id="grade-subject" placeholder="Ex: Communication"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Note /20</label><input type="number" id="grade-value" min="0" max="20" step="0.5"></div>
+                    <div class="form-group"><label>Coef</label><input type="number" id="grade-coef" value="1" min="1" max="10"></div>
+                </div>
+                <div class="form-group"><label>Commentaire</label><textarea id="grade-comment" placeholder="Optionnel..."></textarea></div>
+                <button class="btn btn-success" onclick="addGrade()">📝 Enregistrer</button>
+            </div>
+            <table class="data-table">
+                <thead><tr><th>Étudiant</th><th>Promo</th><th>Matière</th><th>Note</th><th>Date</th><th></th></tr></thead>
+                <tbody>${grades.map(g => { const s = students.find(st => st.id === g.studentId); return `<tr><td>${s ? s.prenom + ' ' + s.nom : '?'}</td><td>${s ? createTag(s.promo, 'promo') : ''} ${s?.year ? `<span class="tag tag-year">${s.year}</span>` : ''}</td><td>${g.subject}</td><td><span class="grade-badge ${getGradeClass(g.value)}">${g.value}/20</span></td><td>${formatDate(g.date)}</td><td><button class="btn btn-danger btn-sm" onclick="deleteGrade(${g.id})">🗑️</button></td></tr>`; }).join('')}</tbody>
+            </table>
+        </div>
+    `;
+}
+
+function updateStudentSelect() {
+    const promo = document.getElementById('grade-filter-promo')?.value;
+    const year = document.getElementById('grade-filter-year')?.value;
+    const students = getData(KEYS.users).filter(u => u.type === 'student' && (!promo || u.promo === promo) && (!year || u.year === year));
+    const select = document.getElementById('grade-student');
+    if (select) {
+        select.innerHTML = '<option value="">Sélectionner...</option>' + students.map(s => `<option value="${s.id}">${s.prenom} ${s.nom} (${s.promo} ${s.year})</option>`).join('');
+    }
+}
+
+function addGrade() {
+    const studentId = parseInt(document.getElementById('grade-student').value);
+    const subject = document.getElementById('grade-subject').value.trim();
+    const value = parseFloat(document.getElementById('grade-value').value);
+    if (!studentId || !subject || isNaN(value)) return alert('Remplissez tous les champs');
+    const grades = getData(KEYS.grades);
+    grades.unshift({ id: Date.now(), studentId, subject, value, coef: parseInt(document.getElementById('grade-coef').value) || 1, date: new Date().toISOString().split('T')[0], comment: document.getElementById('grade-comment').value.trim() });
+    setData(KEYS.grades, grades);
+    renderDashboard();
+    switchTab('grades-manage');
+}
+
+function deleteGrade(id) {
+    if (!confirm('Supprimer ?')) return;
+    setData(KEYS.grades, getData(KEYS.grades).filter(g => g.id !== id));
+    renderDashboard();
+    switchTab('grades-manage');
+}
+
+function renderScheduleManage() {
+    const schedules = getData(KEYS.schedules);
+    return `
+        <div class="card">
+            <h3>📅 Emplois du Temps</h3>
+            <div class="add-form">
+                <div class="form-row">
+                    <div class="form-group"><label>Formation</label><select id="sched-promo"><option value="">Toutes</option>${CONFIG.promos.map(p => `<option value="${p}">${p}</option>`).join('')}</select></div>
+                    <div class="form-group"><label>Site</label><select id="sched-site"><option value="">Tous</option>${CONFIG.sites.map(s => `<option value="${s}">${CONFIG.siteNames[s]}</option>`).join('')}</select></div>
+                </div>
+                <div class="form-group"><label>Nom du fichier</label><input type="text" id="sched-name" placeholder="Ex: EDT Septembre 2024"></div>
+                <button class="btn btn-success" onclick="addSchedule()">📅 Ajouter</button>
+            </div>
+            ${schedules.length ? schedules.map(s => `
+                <div class="file-item"><div class="file-info"><span class="file-icon">📄</span><div><strong>${s.name}</strong><p style="font-size:0.8rem;color:var(--gray-500);">${s.promo ? createTag(s.promo, 'promo') : 'Toutes'} ${s.site ? createTag(s.site, 'site') : 'Tous'}</p></div></div><button class="btn btn-danger btn-sm" onclick="deleteSchedule(${s.id})">🗑️</button></div>
+            `).join('') : '<p style="color:var(--gray-500);text-align:center;padding:1rem;">Aucun fichier</p>'}
+        </div>
+    `;
+}
+
+function addSchedule() {
+    const name = document.getElementById('sched-name').value.trim();
+    if (!name) return alert('Entrez un nom');
+    const schedules = getData(KEYS.schedules);
+    schedules.unshift({ id: Date.now(), name, promo: document.getElementById('sched-promo').value, site: document.getElementById('sched-site').value, date: new Date().toISOString().split('T')[0] });
+    setData(KEYS.schedules, schedules);
+    renderDashboard();
+    switchTab('schedule-manage');
+}
+
+function deleteSchedule(id) {
+    if (!confirm('Supprimer ?')) return;
+    setData(KEYS.schedules, getData(KEYS.schedules).filter(s => s.id !== id));
+    renderDashboard();
+    switchTab('schedule-manage');
+}
+
+function renderStudents() {
+    const students = getData(KEYS.users).filter(u => u.type === 'student');
+    const grades = getData(KEYS.grades);
+    const currentYear = new Date().getFullYear();
+    const years = [];
+    for (let y = currentYear + 1; y >= currentYear - 3; y--) years.push(y);
+    
+    return `
+        <div class="card">
+            <h3>👥 Étudiants (${students.length})</h3>
+            <div class="filters">
+                <div class="filter-group"><label>Formation:</label><select id="students-filter-promo" onchange="filterStudents()"><option value="">Toutes</option>${CONFIG.promos.map(p => `<option value="${p}">${p}</option>`).join('')}</select></div>
+                <div class="filter-group"><label>Année:</label><select id="students-filter-year" onchange="filterStudents()"><option value="">Toutes</option>${years.map(y => `<option value="${y}">${y}-${y+1}</option>`).join('')}</select></div>
+                <div class="filter-group"><label>Site:</label><select id="students-filter-site" onchange="filterStudents()"><option value="">Tous</option>${CONFIG.sites.map(s => `<option value="${s}">${CONFIG.siteNames[s]}</option>`).join('')}</select></div>
+            </div>
+            <div class="data-list" id="students-list">
+                ${students.map(s => {
+                    const sg = grades.filter(g => g.studentId === s.id);
+                    const avg = sg.length ? (sg.reduce((sum, g) => sum + g.value * g.coef, 0) / sg.reduce((sum, g) => sum + g.coef, 0)).toFixed(1) : '-';
+                    return `<div class="data-item" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;" data-promo="${s.promo}" data-year="${s.year}" data-site="${s.site}">
+                        <div style="display:flex;align-items:center;gap:0.75rem;">
+                            <div class="profile-avatar" style="width:45px;height:45px;font-size:0.9rem;">${s.prenom.charAt(0)}${s.nom.charAt(0)}</div>
+                            <div><strong>${s.prenom} ${s.nom}</strong><br><small>${createTag(s.promo, 'promo')} <span class="tag tag-year">${s.year}</span> ${createTag(s.site, 'site')}</small></div>
+                        </div>
+                        <div style="text-align:right;"><span class="grade-badge ${avg !== '-' ? getGradeClass(parseFloat(avg)) : ''}">${avg !== '-' ? avg + '/20' : '--'}</span><br><small>${sg.length} note(s)</small></div>
+                    </div>`;
+                }).join('')}
+            </div>
+        </div>
+    `;
+}
+
+function filterStudents() {
+    const promo = document.getElementById('students-filter-promo').value;
+    const year = document.getElementById('students-filter-year').value;
+    const site = document.getElementById('students-filter-site').value;
+    document.querySelectorAll('#students-list .data-item').forEach(item => {
+        const show = (!promo || item.dataset.promo === promo) && (!year || item.dataset.year === year) && (!site || item.dataset.site === site);
+        item.style.display = show ? '' : 'none';
+    });
+}
+
+function renderSettings() {
+    return `
+        <div class="card">
+            <h3>⚙️ Paramètres</h3>
+            <div class="settings-section">
+                <h4>🔐 Changer le mot de passe</h4>
+                <form onsubmit="changePw(event)">
+                    <div class="form-group"><label>Mot de passe actuel</label><input type="password" id="set-current-pw" required></div>
+                    <div class="form-group"><label>Nouveau mot de passe</label><input type="password" id="set-new-pw" required minlength="8"></div>
+                    <div class="form-group"><label>Confirmer</label><input type="password" id="set-confirm-pw" required></div>
+                    <button type="submit" class="btn btn-primary">Changer</button>
+                </form>
+                <div id="pw-alert" style="margin-top:1rem;"></div>
+            </div>
+            <div class="settings-section">
+                <h4>📧 Email de récupération</h4>
+                <p style="color:var(--gray-500);">Email actuel : <strong>${currentUser.email}</strong></p>
+            </div>
+            ${currentUser.type === 'teacher' ? `
+                <div class="settings-section">
+                    <h4>📍 Mes sites d'intervention</h4>
+                    <div class="chips-container">
+                        ${CONFIG.sites.map(s => `<div class="chip ${currentUser.sites?.includes(s) ? 'selected' : ''}" data-value="${s}" onclick="toggleTeacherSite(this)">${CONFIG.siteNames[s]}</div>`).join('')}
+                    </div>
+                    <button class="btn btn-primary" style="margin-top:1rem;" onclick="saveTeacherSites()">Enregistrer</button>
+                </div>
+            ` : ''}
+        </div>
+    `;
+}
+
+function changePw(e) {
+    e.preventDefault();
+    const current = document.getElementById('set-current-pw').value;
+    const newPw = document.getElementById('set-new-pw').value;
+    const confirm = document.getElementById('set-confirm-pw').value;
+    if (hashPw(current) !== currentUser.password) return showAlert('pw-alert', 'error', 'Mot de passe actuel incorrect');
+    if (!validatePw(newPw)) return showAlert('pw-alert', 'error', '8 car. min, 1 majuscule, 1 chiffre');
+    if (newPw !== confirm) return showAlert('pw-alert', 'error', 'Les mots de passe ne correspondent pas');
+    const users = getData(KEYS.users);
+    const idx = users.findIndex(u => u.id === currentUser.id);
+    users[idx].password = hashPw(newPw);
+    setData(KEYS.users, users);
+    currentUser = users[idx];
+    setSession(currentUser);
+    showAlert('pw-alert', 'success', '✓ Mot de passe modifié');
+    e.target.reset();
+}
+
+function toggleTeacherSite(chip) { chip.classList.toggle('selected'); }
+
+function saveTeacherSites() {
+    const sites = Array.from(document.querySelectorAll('.settings-section .chip.selected')).map(c => c.dataset.value);
+    const users = getData(KEYS.users);
+    const idx = users.findIndex(u => u.id === currentUser.id);
+    users[idx].sites = sites;
+    setData(KEYS.users, users);
+    currentUser = users[idx];
+    setSession(currentUser);
+    alert('Sites enregistrés !');
+    renderDashboard();
+    switchTab('settings');
+}
+
+// ============ SERVICE WORKER ============
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('SW enregistré:', reg.scope))
+            .catch(err => console.log('SW erreur:', err));
+    });
+}
+
+// ============ INIT ============
+initData();
+const session = getSession();
+if (session) {
+    const users = getData(KEYS.users);
+    const user = users.find(u => u.id === session.id);
+    if (user) { currentUser = user; showDashboard(); }
+}
+</script>
+</body>
+</html>
